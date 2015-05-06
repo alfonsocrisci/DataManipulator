@@ -101,7 +101,9 @@ public class LayoutHandler extends BaseHandler {
 		LayoutPrototype layoutPrototype =
 			(LayoutPrototype)requestContext.get(LAYOUT_TEMPLATE_SELECT_LIST);
 
-		layout.setLayoutPrototypeUuid(layoutPrototype.getUuid());
+		if (layoutPrototype != null) {
+			layout.setLayoutPrototypeUuid(layoutPrototype.getUuid());
+		}
 
 		return layout;
 	}
