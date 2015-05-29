@@ -14,7 +14,6 @@
 
 package yg0r2.datamanipulator.handler;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.Field;
@@ -53,7 +52,9 @@ import yg0r2.datamanipulator.util.StringUtil;
  */
 public abstract class BaseHandler {
 
-	public BaseHandler(String entryName, String displayFieldName) {
+	public BaseHandler(String entryName, String displayFieldName)
+		throws Exception {
+
 		_addArgClazzs = getAddArgClazzs();
 		_addArgNames = getAddArgNames();
 		_addClass = getAddClass();
@@ -81,7 +82,7 @@ public abstract class BaseHandler {
 	}
 
 	public abstract DisplayFields getDisplayFields(long groupId)
-		throws SystemException;
+		throws Exception;
 
 	public void proceed(RequestContext requestContext) throws Exception {
 		_requestContext = requestContext;
@@ -134,7 +135,7 @@ public abstract class BaseHandler {
 
 	protected abstract String[] getAddArgNames();
 
-	protected abstract Class<?> getAddClass();
+	protected abstract Class<?> getAddClass() throws ClassNotFoundException;
 
 	protected abstract Map<String, Object> getAddEntrySpecifiedArgs(
 		RequestContext requestContext) throws Exception;
@@ -171,7 +172,7 @@ public abstract class BaseHandler {
 
 	protected abstract String[] getUpdateArgNames();
 
-	protected abstract Class<?> getUpdateClass();
+	protected abstract Class<?> getUpdateClass() throws ClassNotFoundException;
 
 	protected abstract Map<String, Object> getUpdateEntrySpecifiedArgs(
 		Object entry, RequestContext requestContext) throws Exception;
