@@ -65,13 +65,28 @@ public class UserHandler extends BaseHandler {
 
 	@Override
 	protected Class<?>[] getAddArgClazzs() {
+		if (buildNumber < 7000) {
+			return new Class<?>[] {
+				Long.TYPE, Long.TYPE, Boolean.TYPE, String.class,
+				String.class, Boolean.TYPE, String.class, String.class,
+				Long.TYPE, String.class, Locale.class, String.class,
+				String.class, String.class, Integer.TYPE, Integer.TYPE,
+				Boolean.TYPE, Integer.TYPE, Integer.TYPE, Integer.TYPE,
+				String.class, Array.newInstance(Long.TYPE, 0).getClass(),
+				Array.newInstance(Long.TYPE, 0).getClass(),
+				Array.newInstance(Long.TYPE, 0).getClass(),
+				Array.newInstance(Long.TYPE, 0).getClass(), Boolean.TYPE,
+				ServiceContext.class
+			};
+		}
+
 		return new Class<?>[] {
-			Long.TYPE, Long.TYPE, Boolean.TYPE, String.class, String.class,
-			Boolean.TYPE, String.class, String.class, Long.TYPE, String.class,
-			Locale.class, String.class, String.class, String.class,
-			Integer.TYPE, Integer.TYPE, Boolean.TYPE, Integer.TYPE,
-			Integer.TYPE, Integer.TYPE, String.class,
-			Array.newInstance(Long.TYPE, 0).getClass(),
+			Long.TYPE, Long.TYPE, Boolean.TYPE, String.class,
+			String.class, Boolean.TYPE, String.class, String.class,
+			Long.TYPE, String.class, Locale.class, String.class,
+			String.class, String.class, Long.TYPE, Long.TYPE,
+			Boolean.TYPE, Integer.TYPE, Integer.TYPE, Integer.TYPE,
+			String.class, Array.newInstance(Long.TYPE, 0).getClass(),
 			Array.newInstance(Long.TYPE, 0).getClass(),
 			Array.newInstance(Long.TYPE, 0).getClass(),
 			Array.newInstance(Long.TYPE, 0).getClass(), Boolean.TYPE,
@@ -155,35 +170,70 @@ public class UserHandler extends BaseHandler {
 
 	@Override
 	protected Class<?>[] getUpdateArgClazzs() {
+		if (buildNumber < 7000) {
+			return new Class<?>[] {
+				Long.TYPE, String.class, String.class, String.class,
+				Boolean.TYPE, String.class, String.class, String.class,
+				String.class, Long.TYPE, String.class, String.class,
+				String.class, String.class, String.class, String.class,
+				String.class, String.class, Integer.TYPE, Integer.TYPE,
+				Boolean.TYPE, Integer.TYPE, Integer.TYPE, Integer.TYPE,
+				String.class, String.class, String.class, String.class,
+				String.class, String.class, String.class, String.class,
+				String.class, String.class, String.class,
+				Array.newInstance(Long.TYPE, 0).getClass(),
+				Array.newInstance(Long.TYPE, 0).getClass(),
+				Array.newInstance(Long.TYPE, 0).getClass(), List.class,
+				Array.newInstance(Long.TYPE, 0).getClass(), ServiceContext.class
+			};
+		}
+
 		return new Class<?>[] {
 			Long.TYPE, String.class, String.class, String.class, Boolean.TYPE,
 			String.class, String.class, String.class, String.class, Long.TYPE,
+			String.class, Boolean.TYPE,
+			Array.newInstance(Byte.TYPE, 0).getClass(), String.class,
+			String.class, String.class, String.class, String.class,
+			String.class, String.class, Long.TYPE, Long.TYPE, Boolean.TYPE,
+			Integer.TYPE, Integer.TYPE, Integer.TYPE, String.class,
 			String.class, String.class, String.class, String.class,
 			String.class, String.class, String.class, String.class,
-			Integer.TYPE, Integer.TYPE, Boolean.TYPE, Integer.TYPE,
-			Integer.TYPE, Integer.TYPE, String.class, String.class,
-			String.class, String.class, String.class, String.class,
-			String.class, String.class, String.class, String.class,
-			String.class, Array.newInstance(Long.TYPE, 0).getClass(),
+			String.class, String.class,
+			Array.newInstance(Long.TYPE, 0).getClass(),
 			Array.newInstance(Long.TYPE, 0).getClass(),
 			Array.newInstance(Long.TYPE, 0).getClass(), List.class,
-			Array.newInstance(Long.TYPE, 0).getClass(),
-			ServiceContext.class
+			Array.newInstance(Long.TYPE, 0).getClass(), ServiceContext.class
 		};
 	}
 
 	@Override
 	protected String[] getUpdateArgNames() {
+		if (buildNumber < 7000) {
+			return new String[] {
+				"userId", "oldPassword", "newPassword1", "newPassword2",
+				"passwordReset", "reminderQueryQuestion", "reminderQueryAnswer",
+				"screenName", "emailAddress", "facebookId", "openId",
+				"languageId", "timeZoneId", "greeting", "comments", "firstName",
+				"middleName", "lastName", "prefixId", "suffixId", "male",
+				"birthdayMonth", "birthdayDay", "birthdayYear", "smsSn",
+				"aimSn", "facebookSn", "icqSn", "jabberSn", "msnSn",
+				"mySpaceSn", "skypeSn", "twitterSn", "ymSn", "jobTitle",
+				"groupIds", "organizationIds", "roleIds", "userGroupRoles",
+				"userGroupIds", "serviceContext"
+			};
+		}
+
 		return new String[] {
 			"userId", "oldPassword", "newPassword1", "newPassword2",
 			"passwordReset", "reminderQueryQuestion", "reminderQueryAnswer",
-			"screenName", "emailAddress", "facebookId", "openId", "languageId",
-			"timeZoneId", "greeting", "comments", "firstName", "middleName",
-			"lastName", "prefixId", "suffixId", "male", "birthdayMonth",
-			"birthdayDay", "birthdayYear", "smsSn", "aimSn", "facebookSn",
-			"icqSn", "jabberSn", "msnSn", "mySpaceSn", "skypeSn", "twitterSn",
-			"ymSn", "jobTitle", "groupIds", "organizationIds", "roleIds",
-			"userGroupRoles", "userGroupIds", "serviceContext"
+			"screenName", "emailAddress", "facebookId", "openId", "portrait",
+			"portraitBytes", "languageId", "timeZoneId", "greeting", "comments",
+			"firstName", "middleName", "lastName", "prefixId", "suffixId",
+			"male", "birthdayMonth", "birthdayDay", "birthdayYear", "smsSn",
+			"aimSn", "facebookSn", "icqSn", "jabberSn", "msnSn", "mySpaceSn",
+			"skypeSn", "twitterSn", "ymSn", "jobTitle", "groupIds",
+			"organizationIds", "roleIds", "userGroupRoles", "userGroupIds",
+			"serviceContext"
 		};
 	}
 

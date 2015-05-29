@@ -14,6 +14,8 @@
 
 package yg0r2.datamanipulator.runner;
 
+import java.lang.reflect.Method;
+
 import javax.servlet.http.HttpSession;
 
 import com.liferay.portal.kernel.log.Log;
@@ -42,7 +44,18 @@ public class DataManipulatorRunner extends Thread {
 		HttpSession httpSession = _requestContext.getSession();
 		httpSession.setMaxInactiveInterval(-1);
 
-		PermissionThreadLocal.setIndexEnabled(false);
+		try {
+			Class<?> permissionThreadLocalClass = PermissionThreadLocal.class;
+
+			Method setIndexEnabledMethod = permissionThreadLocalClass.getMethod(
+				"setIndexEnabled", new Class<?>[] {Boolean.TYPE});
+
+			setIndexEnabledMethod.invoke(
+				permissionThreadLocalClass, new Object[] {false});
+		}
+		catch (Exception e) {
+		}
+
 		PermissionThreadLocal.setPermissionChecker(
 			_requestContext.getPermissionChecker());
 

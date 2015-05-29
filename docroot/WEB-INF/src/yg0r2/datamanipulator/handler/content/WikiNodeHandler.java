@@ -15,7 +15,6 @@
 package yg0r2.datamanipulator.handler.content;
 
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.wiki.service.WikiNodeLocalServiceUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,6 +27,7 @@ import yg0r2.datamanipulator.context.RequestContext;
 import yg0r2.datamanipulator.displayfield.DisplayFields;
 import yg0r2.datamanipulator.displayfield.FieldKeys;
 import yg0r2.datamanipulator.handler.BaseHandler;
+import yg0r2.datamanipulator.util.GetterUtil;
 
 /**
  * @author Yg0R2
@@ -77,7 +77,7 @@ public class WikiNodeHandler extends BaseHandler {
 
 	@Override
 	protected Class<?> getAddClass() throws ClassNotFoundException {
-		return WikiNodeLocalServiceUtil.class;
+		return _getServiceUtilClass();
 	}
 
 	@Override
@@ -127,7 +127,7 @@ public class WikiNodeHandler extends BaseHandler {
 
 	@Override
 	protected Class<?> getUpdateClass() throws ClassNotFoundException {
-		return WikiNodeLocalServiceUtil.class;
+		return _getServiceUtilClass();
 	}
 
 	@Override
@@ -140,6 +140,15 @@ public class WikiNodeHandler extends BaseHandler {
 	@Override
 	protected String getUpdateMethodName() {
 		return "updateNode";
+	}
+
+	private Class<?> _getServiceUtilClass() throws ClassNotFoundException {
+		String[] classNames = new String[] {
+			"com.liferay.portlet.wiki.service.WikiNodeLocalServiceUtil",
+			"com.liferay.wiki.service.WikiNodeLocalServiceUtil"
+		};
+
+		return GetterUtil.getClass(classNames);
 	}
 
 }

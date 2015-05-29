@@ -14,10 +14,7 @@
 
 package yg0r2.datamanipulator.handler.content;
 
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.bookmarks.model.BookmarksEntry;
-import com.liferay.portlet.bookmarks.service.BookmarksEntryLocalServiceUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,6 +25,7 @@ import yg0r2.datamanipulator.context.RequestContext;
 import yg0r2.datamanipulator.displayfield.DisplayFields;
 import yg0r2.datamanipulator.displayfield.FieldKeys;
 import yg0r2.datamanipulator.handler.BaseHandler;
+import yg0r2.datamanipulator.util.GetterUtil;
 
 /**
  * @author Yg0R2
@@ -76,7 +74,7 @@ public class BookmarkEntryHandler extends BaseHandler {
 
 	@Override
 	protected Class<?> getAddClass() throws ClassNotFoundException {
-		return BookmarksEntryLocalServiceUtil.class;
+		return _getServiceUtilClass();
 	}
 
 	@Override
@@ -128,7 +126,7 @@ public class BookmarkEntryHandler extends BaseHandler {
 
 	@Override
 	protected Class<?> getUpdateClass() throws ClassNotFoundException {
-		return BookmarksEntryLocalServiceUtil.class;
+		return _getServiceUtilClass();
 	}
 
 	@Override
@@ -141,6 +139,15 @@ public class BookmarkEntryHandler extends BaseHandler {
 	@Override
 	protected String getUpdateMethodName() {
 		return "updateEntry";
+	}
+
+	private Class<?> _getServiceUtilClass() throws ClassNotFoundException {
+		String[] classNames = new String[] {
+			"com.liferay.portlet.bookmarks.service.BookmarksEntryLocalServiceUtil",
+			"com.liferay.bookmarks.service.BookmarksEntryLocalServiceUtil"
+		};
+
+		return GetterUtil.getClass(classNames);
 	}
 
 }

@@ -14,13 +14,9 @@
 
 package yg0r2.datamanipulator.handler.content;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.KeyValuePair;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.bookmarks.model.BookmarksFolder;
-import com.liferay.portlet.bookmarks.model.BookmarksFolderConstants;
-import com.liferay.portlet.bookmarks.service.BookmarksFolderLocalServiceUtil;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -28,12 +24,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import jodd.bean.BeanUtil;
+
 import yg0r2.datamanipulator.annotation.Handler;
 import yg0r2.datamanipulator.annotation.HandlerType;
 import yg0r2.datamanipulator.context.RequestContext;
 import yg0r2.datamanipulator.displayfield.DisplayFields;
 import yg0r2.datamanipulator.displayfield.FieldKeys;
 import yg0r2.datamanipulator.handler.BaseHandler;
+import yg0r2.datamanipulator.util.GetterUtil;
 
 /**
  * @author Yg0R2
@@ -98,7 +97,7 @@ public class BookmarkFolderHandler extends BaseHandler {
 
 	@Override
 	protected Class<?> getAddClass() throws ClassNotFoundException {
-		return BookmarksFolderLocalServiceUtil.class;
+		return _getServiceUtilClass();
 	}
 
 	@Override
@@ -164,7 +163,7 @@ public class BookmarkFolderHandler extends BaseHandler {
 
 	@Override
 	protected Class<?> getUpdateClass() throws ClassNotFoundException {
-		return BookmarksFolderLocalServiceUtil.class;
+		return _getServiceUtilClass();
 	}
 
 	@Override
@@ -184,30 +183,35 @@ public class BookmarkFolderHandler extends BaseHandler {
 	}
 
 	private List<KeyValuePair> _getFolderNameIdPairs(long groupId)
-		throws SystemException {
+		throws Exception {
 
-		List<BookmarksFolder> folders =
-			BookmarksFolderLocalServiceUtil.getFolders(
-				groupId, BookmarksFolderConstants.DEFAULT_PARENT_FOLDER_ID);
+		Class<?> bookmarkFolderClass = _getBookmarkFolderClass();
+
+		Class<?> bookmarkFolderServiceUtil = _getServiceUtilClass();
+
+		Method getFoldersMethod = bookmarkFolderServiceUtil.getDeclaredMethod(
+			"getFolders", new Class<?>[] {Long.TYPE, Long.TYPE});
+
+		List<?> folders = (List<?>) getFoldersMethod.invoke(
+			bookmarkFolderServiceUtil, new Object[] {groupId, 0L});
 
 		List<KeyValuePair> folderNameIdPairs = new ArrayList<KeyValuePair>();
 
-		folderNameIdPairs.add(
-			new KeyValuePair(
-				"",
-				String.valueOf(
-					BookmarksFolderConstants.DEFAULT_PARENT_FOLDER_ID)));
+		folderNameIdPairs.add(new KeyValuePair("", "0"));
 
-		for (BookmarksFolder folder : folders) {
-			String folderId = String.valueOf(folder.getFolderId());
-			String folderName = folder.getName();
+		for (Object folder : folders) {
+			String folderId = String.valueOf(
+				BeanUtil.getDeclaredProperty(folder, getClassPKName()));
+
+			String folderName = (String) BeanUtil.getDeclaredProperty(
+				folder, "name");
 
 			try {
-				Method method = BookmarksFolder.class.getMethod(
+				Method method = bookmarkFolderClass.getMethod(
 					"getStatus", new Class<?>[0]);
 
 				Object status = method.invoke(
-					BookmarksFolder.class, new Object[0]);
+					bookmarkFolderClass, new Object[0]);
 
 				if ((Integer)status != WorkflowConstants.STATUS_APPROVED) {
 					continue;
@@ -220,6 +224,24 @@ public class BookmarkFolderHandler extends BaseHandler {
 		}
 
 		return folderNameIdPairs;
+	}
+
+	private Class<?> _getBookmarkFolderClass() throws ClassNotFoundException {
+		String[] classNames = new String[] {
+			"com.liferay.portlet.bookmarks.model.BookmarksFolder",
+			"com.liferay.bookmarks.model.BookmarksFolder"
+		};
+
+		return GetterUtil.getClass(classNames);
+	}
+
+	private Class<?> _getServiceUtilClass() throws ClassNotFoundException {
+		String[] classNames = new String[] {
+			"com.liferay.portlet.bookmarks.service.BookmarksFolderLocalServiceUtil",
+			"com.liferay.bookmarks.service.BookmarksFolderLocalServiceUtil"
+		};
+
+		return GetterUtil.getClass(classNames);
 	}
 
 }

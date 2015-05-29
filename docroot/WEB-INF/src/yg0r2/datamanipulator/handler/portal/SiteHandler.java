@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.staging.StagingUtil;
 import com.liferay.portal.kernel.util.KeyValuePair;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
@@ -304,7 +305,7 @@ public class SiteHandler extends BaseHandler {
 		for (LayoutSetPrototype layoutSetPrototype : layoutSetPrototypes) {
 			siteTemplates.add(
 				new KeyValuePair(
-					layoutSetPrototype.getName(),
+					layoutSetPrototype.getName(LocaleUtil.getDefault()),
 					String.valueOf(
 						layoutSetPrototype.getLayoutSetPrototypeId())));
 		}

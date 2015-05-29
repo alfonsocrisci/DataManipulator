@@ -15,18 +15,19 @@
 package yg0r2.datamanipulator.handler.content;
 
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.wiki.model.WikiPage;
-import com.liferay.portlet.wiki.service.WikiPageLocalServiceUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import jodd.bean.BeanUtil;
+
 import yg0r2.datamanipulator.context.RequestContext;
 import yg0r2.datamanipulator.displayfield.DisplayFields;
 import yg0r2.datamanipulator.displayfield.FieldKeys;
 import yg0r2.datamanipulator.handler.BaseHandler;
+import yg0r2.datamanipulator.util.GetterUtil;
 
 /**
  * @author Yg0R2
@@ -74,7 +75,7 @@ public class WikiPageHandler extends BaseHandler {
 
 	@Override
 	protected Class<?> getAddClass() throws ClassNotFoundException {
-		return WikiPageLocalServiceUtil.class;
+		return _getServiceUtilClass();
 	}
 
 	@Override
@@ -128,7 +129,7 @@ public class WikiPageHandler extends BaseHandler {
 
 	@Override
 	protected Class<?> getUpdateClass() throws ClassNotFoundException {
-		return WikiPageLocalServiceUtil.class;
+		return _getServiceUtilClass();
 	}
 
 	@Override
@@ -138,7 +139,8 @@ public class WikiPageHandler extends BaseHandler {
 		Map<String, Object> args = new HashMap<String, Object>(1);
 
 		args.put("minorEdit", false);
-		args.put("title", ((WikiPage)entry).getTitle());
+		args.put(
+			"title", (String) BeanUtil.getDeclaredProperty(entry, "title"));
 
 		return args;
 	}
@@ -146,6 +148,15 @@ public class WikiPageHandler extends BaseHandler {
 	@Override
 	protected String getUpdateMethodName() {
 		return "updatePage";
+	}
+
+	private Class<?> _getServiceUtilClass() throws ClassNotFoundException {
+		String[] classNames = new String[] {
+			"com.liferay.portlet.wiki.service.WikiPageLocalServiceUtil",
+			"com.liferay.wiki.service.WikiPageLocalServiceUtil"
+		};
+
+		return GetterUtil.getClass(classNames);
 	}
 
 }

@@ -221,8 +221,7 @@ public class JournalArticleHandler extends BaseHandler {
 			}
 		}
 
-		int index = RandomUtil.nextInt(JournalArticleConstants.TYPES.length);
-		String type = JournalArticleConstants.TYPES[index];
+		String type = "general";
 
 		Map<String, Object> args = new HashMap<String, Object>();
 
