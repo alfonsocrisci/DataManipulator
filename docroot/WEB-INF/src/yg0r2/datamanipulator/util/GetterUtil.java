@@ -16,6 +16,8 @@ package yg0r2.datamanipulator.util;
 
 import java.lang.reflect.Field;
 
+import org.apache.commons.lang.ArrayUtils;
+
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 
 /**
@@ -28,6 +30,21 @@ public class GetterUtil {
 
 		return Class.forName(
 			className, false, PortalClassLoaderUtil.getClassLoader());
+	}
+
+	public static Class<?> getClass(String... classNames)
+		throws ClassNotFoundException {
+
+		for (String className : classNames) {
+			try {
+				return getClass(className);
+			}
+			catch (ClassNotFoundException cnfe) {
+			}
+		}
+
+		throw new ClassNotFoundException(
+			"Requested class not found: " + ArrayUtils.toString(classNames));
 	}
 
 	public static Object getFieldValue(String className, String fieldName)
