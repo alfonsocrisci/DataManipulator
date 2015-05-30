@@ -19,6 +19,7 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.wiki.model.WikiNode;
 import com.liferay.portlet.wiki.service.WikiNodeLocalServiceUtil;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +56,10 @@ public class WikiNodeHandler extends BaseHandler {
 		displayFields.addUpdateCount(
 			getDisplayFieldName(FieldKeys.INPUT_UPDATE_COUNT));
 
-		// TODO Auto-generated method stub
+		displayFields.addSeparator("");
+
+		displayFields.addAll((new WikiPageHandler()).getDisplayFields(groupId));
+
 		return displayFields;
 	}
 
@@ -92,8 +96,11 @@ public class WikiNodeHandler extends BaseHandler {
 
 	@Override
 	protected List<String> getChildHandlerNames() {
-		// TODO Auto-generated method stub
-		return null;
+		List<String> childHandlerNames = new ArrayList<String>();
+
+		childHandlerNames.add(WikiPageHandler.class.getSimpleName());
+
+		return childHandlerNames;
 	}
 
 	@Override

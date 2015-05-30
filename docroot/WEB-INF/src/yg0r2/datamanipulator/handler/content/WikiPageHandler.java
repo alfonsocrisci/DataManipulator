@@ -28,6 +28,7 @@ import yg0r2.datamanipulator.context.RequestContext;
 import yg0r2.datamanipulator.displayfield.DisplayFields;
 import yg0r2.datamanipulator.displayfield.FieldKeys;
 import yg0r2.datamanipulator.handler.BaseHandler;
+
 /**
  * @author Yg0R2
  */
@@ -48,10 +49,10 @@ public class WikiPageHandler extends BaseHandler {
 		displayFields.addUpdateCount(
 			getDisplayFieldName(FieldKeys.INPUT_UPDATE_COUNT));
 
-		displayFields.addDepth(getDisplayFieldName(FieldKeys.INPUT_DEPTH));
+		/*displayFields.addDepth(getDisplayFieldName(FieldKeys.INPUT_DEPTH));
 
 		displayFields.addSubCount(
-			getDisplayFieldName(FieldKeys.INPUT_SUBCOUNT));
+			getDisplayFieldName(FieldKeys.INPUT_SUBCOUNT));*/
 
 		return displayFields;
 	}
@@ -147,7 +148,7 @@ public class WikiPageHandler extends BaseHandler {
 		Map<String, Object> args = new HashMap<String, Object>(1);
 
 		args.put("minorEdit", false);
-		//args.put("format", WikiPageConstants.DEFAULT_FORMAT);
+		args.put("title", ((WikiPage)entry).getTitle());
 
 		return args;
 	}
