@@ -98,11 +98,20 @@ public class LayoutHandler extends BaseHandler {
 	public Object addEntry(RequestContext requestContext) throws Exception {
 		Layout layout = (Layout)super.addEntry(requestContext);
 
-		LayoutPrototype layoutPrototype =
-			(LayoutPrototype)requestContext.get(LAYOUT_TEMPLATE_SELECT_LIST);
+		String layoutPrototypeId = (String) requestContext.get(
+			LAYOUT_TEMPLATE_SELECT_LIST);
 
-		if (layoutPrototype != null) {
-			layout.setLayoutPrototypeUuid(layoutPrototype.getUuid());
+		if ((layoutPrototypeId != null) && (!layoutPrototypeId.equals(""))) {
+			LayoutPrototype layoutPrototype =
+				LayoutPrototypeLocalServiceUtil.getLayoutPrototype(
+					Long.valueOf(layoutPrototypeId));
+
+			if (layoutPrototype != null) {
+				layout.setLayoutPrototypeUuid(layoutPrototype.getUuid());
+				layout.setLayoutPrototypeLinkEnabled(true);
+
+				layout = LayoutLocalServiceUtil.updateLayout(layout);
+			}
 		}
 
 		return layout;
