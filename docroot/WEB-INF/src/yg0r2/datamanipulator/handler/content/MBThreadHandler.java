@@ -14,7 +14,6 @@
 
 package yg0r2.datamanipulator.handler.content;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.messageboards.model.MBMessage;
 
@@ -29,7 +28,7 @@ import yg0r2.datamanipulator.displayfield.FieldKeys;
  */
 public class MBThreadHandler extends MBMessageHandled {
 
-	public MBThreadHandler() {
+	public MBThreadHandler() throws Exception {
 		super();
 
 		setDisplayFieldName("message-board-thread");
@@ -37,7 +36,7 @@ public class MBThreadHandler extends MBMessageHandled {
 	}
 
 	@Override
-	public DisplayFields getDisplayFields(long groupId) throws SystemException {
+	public DisplayFields getDisplayFields(long groupId) throws Exception {
 		DisplayFields displayFields = new DisplayFields();
 
 		displayFields.addLabel(getDisplayFieldName());

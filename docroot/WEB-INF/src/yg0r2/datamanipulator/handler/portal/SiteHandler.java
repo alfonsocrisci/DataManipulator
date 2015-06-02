@@ -130,7 +130,7 @@ public class SiteHandler extends BaseHandler {
 	}
 
 	@Override
-	public DisplayFields getDisplayFields(long groupId) throws SystemException {
+	public DisplayFields getDisplayFields(long groupId) throws Exception {
 		DisplayFields displayFields = new DisplayFields();
 
 		displayFields.addLabel(getDisplayFieldName());
@@ -187,7 +187,7 @@ public class SiteHandler extends BaseHandler {
 	}
 
 	@Override
-	protected Class<?> getAddClass() {
+	protected Class<?> getAddClass() throws ClassNotFoundException {
 		return GroupLocalServiceUtil.class;
 	}
 
@@ -276,7 +276,7 @@ public class SiteHandler extends BaseHandler {
 	}
 
 	@Override
-	protected Class<?> getUpdateClass() {
+	protected Class<?> getUpdateClass() throws ClassNotFoundException {
 		return GroupLocalServiceUtil.class;
 	}
 

@@ -14,7 +14,6 @@
 
 package yg0r2.datamanipulator.handler.portal;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
@@ -40,12 +39,12 @@ import yg0r2.datamanipulator.handler.BaseHandler;
 @Handler(type = HandlerType.PORTAL, displayName = "User Handler")
 public class UserHandler extends BaseHandler {
 
-	public UserHandler() {
+	public UserHandler() throws Exception {
 		super("User", "user");
 	}
 
 	@Override
-	public DisplayFields getDisplayFields(long groupId) throws SystemException {
+	public DisplayFields getDisplayFields(long groupId) throws Exception {
 		DisplayFields displayFields = new DisplayFields();
 
 		displayFields.addLabel(getDisplayFieldName());
@@ -96,7 +95,7 @@ public class UserHandler extends BaseHandler {
 	}
 
 	@Override
-	protected Class<?> getAddClass() {
+	protected Class<?> getAddClass() throws ClassNotFoundException {
 		return UserLocalServiceUtil.class;
 	}
 
@@ -200,7 +199,7 @@ public class UserHandler extends BaseHandler {
 	}
 
 	@Override
-	protected Class<?> getUpdateClass() {
+	protected Class<?> getUpdateClass() throws ClassNotFoundException {
 		return UserLocalServiceUtil.class;
 	}
 

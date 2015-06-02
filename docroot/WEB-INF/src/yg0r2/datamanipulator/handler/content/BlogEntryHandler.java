@@ -14,7 +14,6 @@
 
 package yg0r2.datamanipulator.handler.content;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.blogs.model.BlogsEntry;
@@ -40,12 +39,12 @@ import yg0r2.datamanipulator.handler.BaseHandler;
 @Handler(type = HandlerType.CONTENT, displayName = "Blogs Handler")
 public class BlogEntryHandler extends BaseHandler {
 
-	public BlogEntryHandler() {
+	public BlogEntryHandler() throws Exception {
 		super("Blog Entry", "blog-entry");
 	}
 
 	@Override
-	public DisplayFields getDisplayFields(long groupId) throws SystemException {
+	public DisplayFields getDisplayFields(long groupId) throws Exception {
 		DisplayFields displayFields = new DisplayFields();
 
 		displayFields.addUserMultiSelect(FieldKeys.MULTI_SELECT_USER_LIST);
@@ -88,7 +87,7 @@ public class BlogEntryHandler extends BaseHandler {
 	}
 
 	@Override
-	protected Class<?> getAddClass() {
+	protected Class<?> getAddClass() throws ClassNotFoundException {
 		return BlogsEntryLocalServiceUtil.class;
 	}
 
@@ -180,7 +179,7 @@ public class BlogEntryHandler extends BaseHandler {
 	}
 
 	@Override
-	protected Class<?> getUpdateClass() {
+	protected Class<?> getUpdateClass() throws ClassNotFoundException {
 		return BlogsEntryLocalServiceUtil.class;
 	}
 

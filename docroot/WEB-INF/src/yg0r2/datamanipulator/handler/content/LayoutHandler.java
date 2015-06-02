@@ -50,12 +50,12 @@ public class LayoutHandler extends BaseHandler {
 	public static final String LAYOUT_TYPE_SELECT_LIST =
 		"layout-type-select-list";
 
-	public LayoutHandler() {
+	public LayoutHandler() throws Exception {
 		super("Layout", "layout");
 	}
 
 	@Override
-	public DisplayFields getDisplayFields(long groupId) throws SystemException {
+	public DisplayFields getDisplayFields(long groupId) throws Exception {
 		DisplayFields displayFields = new DisplayFields();
 
 		displayFields.addUserMultiSelect(FieldKeys.MULTI_SELECT_USER_LIST);
@@ -127,7 +127,7 @@ public class LayoutHandler extends BaseHandler {
 	}
 
 	@Override
-	protected Class<?> getAddClass() {
+	protected Class<?> getAddClass() throws ClassNotFoundException {
 		return LayoutLocalServiceUtil.class;
 	}
 
@@ -193,7 +193,7 @@ public class LayoutHandler extends BaseHandler {
 	}
 
 	@Override
-	protected Class<?> getUpdateClass() {
+	protected Class<?> getUpdateClass() throws ClassNotFoundException {
 		return null;
 	}
 

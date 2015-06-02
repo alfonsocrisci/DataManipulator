@@ -54,12 +54,12 @@ public class JournalArticleHandler extends BaseHandler {
 	public static final String AUTO_ARTICLE_ID = "auto-article-id";
 	public static final String STRUCTURE_LIST = "structure-list";
 
-	public JournalArticleHandler() {
+	public JournalArticleHandler() throws Exception {
 		super("Journal Article", "journal-article");
 	}
 
 	@Override
-	public DisplayFields getDisplayFields(long groupId) throws SystemException {
+	public DisplayFields getDisplayFields(long groupId) throws Exception {
 		DisplayFields displayFields = new DisplayFields();
 
 		displayFields.addUserMultiSelect(FieldKeys.MULTI_SELECT_USER_LIST);
@@ -161,7 +161,7 @@ public class JournalArticleHandler extends BaseHandler {
 	}
 
 	@Override
-	protected Class<?> getAddClass() {
+	protected Class<?> getAddClass() throws ClassNotFoundException {
 		return JournalArticleLocalServiceUtil.class;
 	}
 
@@ -314,7 +314,7 @@ public class JournalArticleHandler extends BaseHandler {
 	}
 
 	@Override
-	protected Class<?> getUpdateClass() {
+	protected Class<?> getUpdateClass() throws ClassNotFoundException {
 		return JournalArticleLocalServiceUtil.class;
 	}
 

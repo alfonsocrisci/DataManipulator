@@ -42,12 +42,12 @@ import yg0r2.datamanipulator.handler.BaseHandler;
 @Handler(type = HandlerType.CONTENT, displayName = "Bookmarks Handler")
 public class BookmarkFolderHandler extends BaseHandler {
 
-	public BookmarkFolderHandler() {
+	public BookmarkFolderHandler() throws Exception {
 		super("Bookmark Folder", "bookmark-folder");
 	}
 
 	@Override
-	public DisplayFields getDisplayFields(long groupId) throws SystemException {
+	public DisplayFields getDisplayFields(long groupId) throws Exception {
 		DisplayFields displayFields = new DisplayFields();
 
 		displayFields.addUserMultiSelect(FieldKeys.MULTI_SELECT_USER_LIST);
@@ -98,7 +98,7 @@ public class BookmarkFolderHandler extends BaseHandler {
 	}
 
 	@Override
-	protected Class<?> getAddClass() {
+	protected Class<?> getAddClass() throws ClassNotFoundException {
 		return BookmarksFolderLocalServiceUtil.class;
 	}
 
@@ -173,7 +173,7 @@ public class BookmarkFolderHandler extends BaseHandler {
 	}
 
 	@Override
-	protected Class<?> getUpdateClass() {
+	protected Class<?> getUpdateClass() throws ClassNotFoundException {
 		return BookmarksFolderLocalServiceUtil.class;
 	}
 

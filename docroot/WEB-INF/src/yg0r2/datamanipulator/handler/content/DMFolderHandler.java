@@ -48,12 +48,12 @@ public class DMFolderHandler extends BaseHandler {
 	public static final String PARENT_FOLDER_LIST = "parent-folder-list";
 	public static final String REPOSITORY_LIST = "repository-list";
 
-	public DMFolderHandler() {
+	public DMFolderHandler() throws Exception {
 		super("Documents and Media Folder", "documents-and-media-folder");
 	}
 
 	@Override
-	public DisplayFields getDisplayFields(long groupId) throws SystemException {
+	public DisplayFields getDisplayFields(long groupId) throws Exception {
 		DisplayFields displayFields = new DisplayFields();
 
 		displayFields.addUserMultiSelect(FieldKeys.MULTI_SELECT_USER_LIST);
@@ -111,7 +111,7 @@ public class DMFolderHandler extends BaseHandler {
 	}
 
 	@Override
-	protected Class<?> getAddClass() {
+	protected Class<?> getAddClass() throws ClassNotFoundException {
 		return DLAppServiceUtil.class;
 	}
 
@@ -193,7 +193,7 @@ public class DMFolderHandler extends BaseHandler {
 	}
 
 	@Override
-	protected Class<?> getUpdateClass() {
+	protected Class<?> getUpdateClass() throws ClassNotFoundException {
 		return DLAppServiceUtil.class;
 	}
 

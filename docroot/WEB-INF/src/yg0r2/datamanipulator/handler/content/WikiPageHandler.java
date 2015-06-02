@@ -14,6 +14,11 @@
 
 package yg0r2.datamanipulator.handler.content;
 
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portlet.wiki.model.WikiPage;
+import com.liferay.portlet.wiki.service.WikiPageLocalServiceUtil;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,23 +28,17 @@ import yg0r2.datamanipulator.context.RequestContext;
 import yg0r2.datamanipulator.displayfield.DisplayFields;
 import yg0r2.datamanipulator.displayfield.FieldKeys;
 import yg0r2.datamanipulator.handler.BaseHandler;
-import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.wiki.model.WikiPage;
-import com.liferay.portlet.wiki.service.WikiPageLocalServiceUtil;
-
 /**
  * @author Yg0R2
  */
 public class WikiPageHandler extends BaseHandler {
 
-	public WikiPageHandler() {
+	public WikiPageHandler() throws Exception {
 		super("Wiki Page", "wiki-page");
 	}
 
 	@Override
-	public DisplayFields getDisplayFields(long groupId) throws SystemException {
+	public DisplayFields getDisplayFields(long groupId) throws Exception {
 		DisplayFields displayFields = new DisplayFields();
 
 		displayFields.addLabel(getDisplayFieldName());
@@ -74,7 +73,7 @@ public class WikiPageHandler extends BaseHandler {
 	}
 
 	@Override
-	protected Class<?> getAddClass() {
+	protected Class<?> getAddClass() throws ClassNotFoundException {
 		return WikiPageLocalServiceUtil.class;
 	}
 
@@ -137,7 +136,7 @@ public class WikiPageHandler extends BaseHandler {
 	}
 
 	@Override
-	protected Class<?> getUpdateClass() {
+	protected Class<?> getUpdateClass() throws ClassNotFoundException {
 		return WikiPageLocalServiceUtil.class;
 	}
 

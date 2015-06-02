@@ -14,7 +14,6 @@
 
 package yg0r2.datamanipulator.handler.content;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -41,12 +40,12 @@ public class DMDocumentHandler extends BaseHandler {
 
 	public static final String UPLOAD_FILE = "upload-file";
 
-	public DMDocumentHandler() {
+	public DMDocumentHandler() throws Exception {
 		super("Documents and Media Document", "documents-and-media-document");
 	}
 
 	@Override
-	public DisplayFields getDisplayFields(long groupId) throws SystemException {
+	public DisplayFields getDisplayFields(long groupId) throws Exception {
 		DisplayFields displayFields = new DisplayFields();
 
 		displayFields.addLabel(getDisplayFieldName());
@@ -78,7 +77,7 @@ public class DMDocumentHandler extends BaseHandler {
 	}
 
 	@Override
-	protected Class<?> getAddClass() {
+	protected Class<?> getAddClass() throws ClassNotFoundException {
 		return DLAppServiceUtil.class;
 	}
 
@@ -154,7 +153,7 @@ public class DMDocumentHandler extends BaseHandler {
 	}
 
 	@Override
-	protected Class<?> getUpdateClass() {
+	protected Class<?> getUpdateClass() throws ClassNotFoundException {
 		return DLAppServiceUtil.class;
 	}
 

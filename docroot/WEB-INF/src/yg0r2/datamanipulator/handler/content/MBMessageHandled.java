@@ -14,7 +14,6 @@
 
 package yg0r2.datamanipulator.handler.content;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.messageboards.model.MBMessage;
@@ -38,12 +37,12 @@ import yg0r2.datamanipulator.handler.BaseHandler;
  */
 public class MBMessageHandled extends BaseHandler {
 
-	public MBMessageHandled() {
+	public MBMessageHandled() throws Exception {
 		super("Message Board Message", "message-board-message");
 	}
 
 	@Override
-	public DisplayFields getDisplayFields(long groupId) throws SystemException {
+	public DisplayFields getDisplayFields(long groupId) throws Exception {
 		DisplayFields displayFields = new DisplayFields();
 
 		displayFields.addLabel(getDisplayFieldName());
@@ -75,7 +74,7 @@ public class MBMessageHandled extends BaseHandler {
 	}
 
 	@Override
-	protected Class<?> getAddClass() {
+	protected Class<?> getAddClass() throws ClassNotFoundException {
 		return MBMessageLocalServiceUtil.class;
 	}
 
@@ -153,7 +152,7 @@ public class MBMessageHandled extends BaseHandler {
 	}
 
 	@Override
-	protected Class<?> getUpdateClass() {
+	protected Class<?> getUpdateClass() throws ClassNotFoundException {
 		return MBMessageLocalServiceUtil.class;
 	}
 

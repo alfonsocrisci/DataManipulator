@@ -54,7 +54,7 @@ public class MBCategoryHandler extends BaseHandler {
 	}
 
 	@Override
-	public DisplayFields getDisplayFields(long groupId) throws SystemException {
+	public DisplayFields getDisplayFields(long groupId) throws Exception {
 		DisplayFields displayFields = new DisplayFields();
 
 		displayFields.addUserMultiSelect(FieldKeys.MULTI_SELECT_USER_LIST);
@@ -108,7 +108,7 @@ public class MBCategoryHandler extends BaseHandler {
 	}
 
 	@Override
-	protected Class<?> getAddClass() {
+	protected Class<?> getAddClass() throws ClassNotFoundException {
 		return MBCategoryLocalServiceUtil.class;
 	}
 
@@ -184,7 +184,7 @@ public class MBCategoryHandler extends BaseHandler {
 	}
 
 	@Override
-	protected Class<?> getUpdateClass() {
+	protected Class<?> getUpdateClass() throws ClassNotFoundException {
 		return MBCategoryLocalServiceUtil.class;
 	}
 

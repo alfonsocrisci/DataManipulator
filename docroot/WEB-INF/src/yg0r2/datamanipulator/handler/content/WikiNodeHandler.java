@@ -14,7 +14,6 @@
 
 package yg0r2.datamanipulator.handler.content;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.wiki.model.WikiNode;
@@ -37,12 +36,12 @@ import yg0r2.datamanipulator.handler.BaseHandler;
 @Handler(type = HandlerType.CONTENT, displayName = "Wiki Handler")
 public class WikiNodeHandler extends BaseHandler {
 
-	public WikiNodeHandler() {
+	public WikiNodeHandler() throws Exception {
 		super("Wiki Node", "wiki-node");
 	}
 
 	@Override
-	public DisplayFields getDisplayFields(long groupId) throws SystemException {
+	public DisplayFields getDisplayFields(long groupId) throws Exception {
 		DisplayFields displayFields = new DisplayFields();
 
 		displayFields.addUserMultiSelect(FieldKeys.MULTI_SELECT_USER_LIST);
@@ -75,7 +74,7 @@ public class WikiNodeHandler extends BaseHandler {
 	}
 
 	@Override
-	protected Class<?> getAddClass() {
+	protected Class<?> getAddClass() throws ClassNotFoundException {
 		return WikiNodeLocalServiceUtil.class;
 	}
 
@@ -131,7 +130,7 @@ public class WikiNodeHandler extends BaseHandler {
 	}
 
 	@Override
-	protected Class<?> getUpdateClass() {
+	protected Class<?> getUpdateClass() throws ClassNotFoundException {
 		return WikiNodeLocalServiceUtil.class;
 	}
 
