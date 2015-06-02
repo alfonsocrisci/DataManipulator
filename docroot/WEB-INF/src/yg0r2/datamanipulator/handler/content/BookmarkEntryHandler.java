@@ -14,9 +14,7 @@
 
 package yg0r2.datamanipulator.handler.content;
 
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.bookmarks.model.BookmarksEntry;
 import com.liferay.portlet.bookmarks.service.BookmarksEntryLocalServiceUtil;
 
 import java.util.ArrayList;
@@ -98,15 +96,6 @@ public class BookmarkEntryHandler extends BaseHandler {
 	@Override
 	protected List<String> getChildHandlerNames() {
 		return new ArrayList<String>();
-	}
-
-	@Override
-	protected Object getClassPK(Object entry) {
-		if (Validator.isNull(entry)) {
-			return 0;
-		}
-
-		return ((BookmarksEntry)entry).getEntryId();
 	}
 
 	@Override

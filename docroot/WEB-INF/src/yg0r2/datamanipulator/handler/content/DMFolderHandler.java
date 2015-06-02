@@ -16,9 +16,7 @@ package yg0r2.datamanipulator.handler.content;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.util.KeyValuePair;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Repository;
 import com.liferay.portal.service.RepositoryLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
@@ -150,22 +148,6 @@ public class DMFolderHandler extends BaseHandler {
 		childHandlers.add(DMDocumentHandler.class.getSimpleName());
 
 		return childHandlers;
-	}
-
-	@Override
-	protected Object getClassPK(Object entry) {
-		if (Validator.isNull(entry)) {
-			return DLFolderConstants.DEFAULT_PARENT_FOLDER_ID;
-		}
-
-		if (entry instanceof Folder) {
-			return ((Folder)entry).getFolderId();
-		}
-		else if (entry instanceof DLFolder) {
-			return ((DLFolder)entry).getFolderId();
-		}
-
-		return null;
 	}
 
 	@Override

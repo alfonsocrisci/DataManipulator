@@ -14,9 +14,6 @@
 
 package yg0r2.datamanipulator.handler.content;
 
-import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portlet.messageboards.model.MBMessage;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,15 +58,6 @@ public class MBThreadHandler extends MBMessageHandled {
 		childHandlerNames.add(MBMessageHandled.class.getSimpleName());
 
 		return childHandlerNames;
-	}
-
-	@Override
-	protected Object getClassPK(Object entry) {
-		if (Validator.isNull(entry)) {
-			return 0;
-		}
-
-		return ((MBMessage)entry).getThreadId();
 	}
 
 	@Override

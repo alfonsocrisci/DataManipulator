@@ -18,7 +18,6 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.KeyValuePair;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.LayoutPrototype;
@@ -173,17 +172,8 @@ public class LayoutHandler extends BaseHandler {
 	}
 
 	@Override
-	protected Object getClassPK(Object entry) {
-		if (Validator.isNull(entry)) {
-			return LayoutConstants.DEFAULT_PARENT_LAYOUT_ID;
-		}
-
-		return ((Layout)entry).getLayoutId();
-	}
-
-	@Override
 	protected String getClassPKName() {
-		return null;
+		return "layoutId";
 	}
 
 	@Override
@@ -306,7 +296,5 @@ public class LayoutHandler extends BaseHandler {
 
 		return layoutTypes;
 	}
-
-
 
 }

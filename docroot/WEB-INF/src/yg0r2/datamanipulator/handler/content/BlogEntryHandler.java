@@ -14,9 +14,7 @@
 
 package yg0r2.datamanipulator.handler.content;
 
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.blogs.model.BlogsEntry;
 import com.liferay.portlet.blogs.service.BlogsEntryLocalServiceUtil;
 
 import java.io.InputStream;
@@ -116,15 +114,6 @@ public class BlogEntryHandler extends BaseHandler {
 	@Override
 	protected List<String> getChildHandlerNames() {
 		return new ArrayList<String>(0);
-	}
-
-	@Override
-	protected Object getClassPK(Object entry) {
-		if (Validator.isNull(entry)) {
-			return 0L;
-		}
-
-		return ((BlogsEntry)entry).getEntryId();
 	}
 
 	@Override

@@ -20,9 +20,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.mail.Account;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.messageboards.model.MBCategory;
 import com.liferay.portlet.messageboards.model.MBCategoryConstants;
 import com.liferay.portlet.messageboards.service.MBCategoryLocalServiceUtil;
 
@@ -137,15 +135,6 @@ public class MBCategoryHandler extends BaseHandler {
 		childHandlerNames.add(MBThreadHandler.class.getSimpleName());
 
 		return childHandlerNames;
-	}
-
-	@Override
-	protected Object getClassPK(Object entry) {
-		if (Validator.isNull(entry)) {
-			return MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID;
-		}
-
-		return ((MBCategory)entry).getCategoryId();
 	}
 
 	@Override
