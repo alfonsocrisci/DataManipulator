@@ -150,7 +150,13 @@ public abstract class BaseHandler {
 	 * @param entry
 	 * @return
 	 */
-	protected abstract Object getClassPK(Object entry);
+	protected Object getClassPK(Object entry) {
+		if (Validator.isNull(entry)) {
+			return 0L;
+		}
+
+		return BeanUtil.getDeclaredProperty(entry, getClassPKName());
+	}
 
 	protected abstract String getClassPKName();
 
