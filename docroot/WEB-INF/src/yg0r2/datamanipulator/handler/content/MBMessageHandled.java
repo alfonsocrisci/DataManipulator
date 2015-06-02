@@ -14,9 +14,7 @@
 
 package yg0r2.datamanipulator.handler.content;
 
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.model.MBMessageConstants;
 import com.liferay.portlet.messageboards.model.MBThread;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
@@ -114,15 +112,6 @@ public class MBMessageHandled extends BaseHandler {
 	@Override
 	protected List<String> getChildHandlerNames() {
 		return new ArrayList<String>(0);
-	}
-
-	@Override
-	protected Object getClassPK(Object entry) {
-		if (Validator.isNull(entry)) {
-			return MBMessageConstants.DEFAULT_PARENT_MESSAGE_ID;
-		}
-
-		return ((MBMessage)entry).getMessageId();
 	}
 
 	@Override

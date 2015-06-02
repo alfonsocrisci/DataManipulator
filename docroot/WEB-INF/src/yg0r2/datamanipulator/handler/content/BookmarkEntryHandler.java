@@ -101,15 +101,6 @@ public class BookmarkEntryHandler extends BaseHandler {
 	}
 
 	@Override
-	protected Object getClassPK(Object entry) {
-		if (Validator.isNull(entry)) {
-			return 0;
-		}
-
-		return ((BookmarksEntry)entry).getEntryId();
-	}
-
-	@Override
 	protected String getClassPKName() {
 		return "entryId";
 	}

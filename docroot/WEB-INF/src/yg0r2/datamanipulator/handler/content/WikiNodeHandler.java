@@ -14,9 +14,7 @@
 
 package yg0r2.datamanipulator.handler.content;
 
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.wiki.model.WikiNode;
 import com.liferay.portlet.wiki.service.WikiNodeLocalServiceUtil;
 
 import java.util.ArrayList;
@@ -101,15 +99,6 @@ public class WikiNodeHandler extends BaseHandler {
 		childHandlerNames.add(WikiPageHandler.class.getSimpleName());
 
 		return childHandlerNames;
-	}
-
-	@Override
-	protected Object getClassPK(Object entry) {
-		if (Validator.isNull(entry)) {
-			return 0;
-		}
-
-		return ((WikiNode)entry).getNodeId();
 	}
 
 	@Override

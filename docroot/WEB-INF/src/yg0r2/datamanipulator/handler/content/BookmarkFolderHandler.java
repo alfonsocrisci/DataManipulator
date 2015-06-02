@@ -16,7 +16,6 @@ package yg0r2.datamanipulator.handler.content;
 
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.KeyValuePair;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.bookmarks.model.BookmarksFolder;
@@ -121,15 +120,6 @@ public class BookmarkFolderHandler extends BaseHandler {
 		childHandlerNames.add(BookmarkEntryHandler.class.getSimpleName());
 
 		return childHandlerNames;
-	}
-
-	@Override
-	protected Object getClassPK(Object entry) {
-		if (Validator.isNull(entry)) {
-			return BookmarksFolderConstants.DEFAULT_PARENT_FOLDER_ID;
-		}
-
-		return ((BookmarksFolder)entry).getFolderId();
 	}
 
 	@Override

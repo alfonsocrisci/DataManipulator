@@ -265,7 +265,7 @@ public class JournalArticleHandler extends BaseHandler {
 			return StringPool.BLANK;
 		}
 
-		return ((JournalArticle)entry).getArticleId();
+		return BeanUtil.getDeclaredProperty(entry, getClassPKName());
 	}
 
 	@Override

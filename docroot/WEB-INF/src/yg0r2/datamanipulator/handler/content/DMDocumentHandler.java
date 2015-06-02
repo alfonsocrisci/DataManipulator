@@ -14,12 +14,8 @@
 
 package yg0r2.datamanipulator.handler.content;
 
-import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.documentlibrary.model.DLFileEntry;
-import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
 import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
 
 import java.io.File;
@@ -108,22 +104,6 @@ public class DMDocumentHandler extends BaseHandler {
 	@Override
 	protected List<String> getChildHandlerNames() {
 		return new ArrayList<String>(0);
-	}
-
-	@Override
-	protected Object getClassPK(Object entry) {
-		if (Validator.isNull(entry)) {
-			return DLFolderConstants.DEFAULT_PARENT_FOLDER_ID;
-		}
-
-		if (entry instanceof DLFileEntry) {
-			return ((DLFileEntry)entry).getFileEntryId();
-		}
-		else if (entry instanceof FileEntry) {
-			return ((FileEntry)entry).getFileEntryId();
-		}
-
-		return DLFolderConstants.DEFAULT_PARENT_FOLDER_ID;
 	}
 
 	@Override

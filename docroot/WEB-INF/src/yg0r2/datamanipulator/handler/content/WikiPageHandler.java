@@ -14,7 +14,6 @@
 
 package yg0r2.datamanipulator.handler.content;
 
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.wiki.model.WikiPage;
 import com.liferay.portlet.wiki.service.WikiPageLocalServiceUtil;
@@ -97,15 +96,6 @@ public class WikiPageHandler extends BaseHandler {
 	@Override
 	protected List<String> getChildHandlerNames() {
 		return new ArrayList<String>(0);
-	}
-
-	@Override
-	protected Object getClassPK(Object entry) {
-		if (Validator.isNull(entry)) {
-			return 0;
-		}
-
-		return ((WikiPage)entry).getPageId();
 	}
 
 	@Override
