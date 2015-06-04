@@ -16,6 +16,7 @@ package yg0r2.datamanipulator.context;
 
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
+import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -29,6 +30,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.portlet.PortletRequest;
 import javax.servlet.http.HttpSession;
 
 import yg0r2.datamanipulator.displayfield.FieldKeys;
@@ -182,6 +184,11 @@ public class RequestContext {
 
 	public PermissionChecker getPermissionChecker() {
 		return _themeDisplay.getPermissionChecker();
+	}
+
+	public PortletRequest getRequest() {
+		return (PortletRequest) _uploadRequest.getAttribute(
+			JavaConstants.JAVAX_PORTLET_REQUEST);
 	}
 
 	public long[] getRoleIds() {
