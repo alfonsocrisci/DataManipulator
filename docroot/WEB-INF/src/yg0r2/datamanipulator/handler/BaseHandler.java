@@ -81,6 +81,14 @@ public abstract class BaseHandler {
 		return method.invoke(_addClass, args);
 	}
 
+	public String getDisplayFieldName() {
+		return _displayFieldPreString;
+	}
+
+	public String getDisplayFieldName(String postfix) {
+		return _displayFieldPreString + StringPool.DASH + postfix;
+	}
+
 	public abstract DisplayFields getDisplayFields(long groupId)
 		throws Exception;
 
@@ -159,14 +167,6 @@ public abstract class BaseHandler {
 	}
 
 	protected abstract String getClassPKName();
-
-	protected String getDisplayFieldName() {
-		return _displayFieldPreString;
-	}
-
-	protected String getDisplayFieldName(String postfix) {
-		return _displayFieldPreString + StringPool.DASH + postfix;
-	}
 
 	protected String getEntryName() {
 		return _entryName;
