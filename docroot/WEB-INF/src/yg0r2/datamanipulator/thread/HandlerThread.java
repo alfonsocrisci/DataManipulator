@@ -12,7 +12,7 @@
  * details.
  */
 
-package yg0r2.datamanipulator.runner;
+package yg0r2.datamanipulator.thread;
 
 import javax.servlet.http.HttpSession;
 
@@ -28,11 +28,9 @@ import yg0r2.datamanipulator.handler.BaseHandler;
 /**
  * @author Yg0R2
  */
-public class DataManipulatorRunner extends Thread {
+public class HandlerThread extends Thread {
 
-	public DataManipulatorRunner(
-		BaseHandler handler, RequestContext requestContext) {
-
+	public HandlerThread(BaseHandler handler, RequestContext requestContext) {
 		_handler = handler;
 		_requestContext = requestContext;
 	}
@@ -50,7 +48,7 @@ public class DataManipulatorRunner extends Thread {
 
 		PortalSessionThreadLocal.setHttpSession(httpSession);
 
-		String threadName = (Thread.currentThread()).getName();
+		String threadName = this.getName();
 
 		long startTime = System.currentTimeMillis();
 
@@ -71,13 +69,12 @@ public class DataManipulatorRunner extends Thread {
 			threadName + " finished add entries at " + String.valueOf(endTime) +
 			StringPool.PERIOD);
 
-		double taked = (endTime - startTime) / 1000;
+		double took = (endTime - startTime) / 1000;
 
-		_log.info("The whole process taked " + String.valueOf(taked) + "s.");
+		_log.info("The whole process took " + String.valueOf(took) + "s.");
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(
-		DataManipulatorRunner.class);
+	private static Log _log = LogFactoryUtil.getLog(HandlerThread.class);
 
 	private BaseHandler _handler;
 	private RequestContext _requestContext;

@@ -27,7 +27,7 @@ import javax.portlet.ActionResponse;
 import yg0r2.datamanipulator.context.RequestContext;
 import yg0r2.datamanipulator.handler.BaseHandler;
 import yg0r2.datamanipulator.handler.util.HandlerUtil;
-import yg0r2.datamanipulator.runner.DataManipulatorRunner;
+import yg0r2.datamanipulator.thread.HandlerThread;
 /**
  * @author Yg0R2
  */
@@ -70,10 +70,10 @@ public class DataManipulatorAdmin extends MVCPortlet {
 				requestContext.setGroupId(groupId);
 				requestContext.setUserId(userId);
 
-				DataManipulatorRunner runner = new DataManipulatorRunner(
+				HandlerThread handlerThread = new HandlerThread(
 					handler, requestContext);
 
-				runner.start();
+				handlerThread.start();
 			}
 		}
 	}
