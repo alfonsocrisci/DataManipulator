@@ -164,6 +164,10 @@ public class RequestContext {
 	}
 
 	public long[] getLongValues(String key) {
+		if (_parameters.containsKey(key)) {
+			return (long[]) _parameters.get(key);
+		}
+
 		return ParamUtil.getLongValues(_uploadRequest, key, new long[0]);
 	}
 
@@ -247,6 +251,10 @@ public class RequestContext {
 
 	public void setGroupId(long groupId) {
 		set(Field.GROUP_ID, groupId);
+	}
+
+	public void setGroupIds(long[] groupIds) {
+		set(FieldKeys.MULTI_SELECT_SITE_LIST, groupIds);
 	}
 
 	public void setUserId(long userId) {
