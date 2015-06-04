@@ -14,6 +14,7 @@
 
 package yg0r2.datamanipulator.util;
 
+import java.text.Normalizer;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -22,6 +23,7 @@ import jodd.bean.BeanTemplateParser;
 
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 
 /**
  * @author Yg0R2
@@ -53,6 +55,20 @@ public class StringUtil {
 
 	public static String lowerCaseFirstLetter(String s) {
 		return s.substring(0, 1).toLowerCase() + s.substring(1);
+	}
+
+	public static String normalizeFriendlyURL(String friendlyURL) {
+		if (Validator.isNull(friendlyURL)) {
+			return friendlyURL;
+		}
+
+		friendlyURL = friendlyURL.toLowerCase();
+		friendlyURL = Normalizer.normalize(friendlyURL, Normalizer.Form.NFD);
+		friendlyURL = friendlyURL.replaceAll("[^\\p{ASCII}]", "");
+		friendlyURL = friendlyURL.replaceAll("[^a-z0-9./_-]", StringPool.DASH);
+		friendlyURL = friendlyURL.replaceAll("(-)\\1+", StringPool.DASH);
+
+		return friendlyURL;
 	}
 
 	public static String upperCaseFirstLetter(String s) {
