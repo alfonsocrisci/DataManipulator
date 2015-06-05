@@ -46,7 +46,7 @@ public class DMDocumentHandler extends BaseHandler {
 
 		displayFields.addLabel(getDisplayFieldName());
 
-		displayFields.add(UPLOAD_FILE, FieldKeys.FILE_REQUIRED);
+		displayFields.addFile(UPLOAD_FILE, true);
 
 		displayFields.addCount(getDisplayFieldName(FieldKeys.INPUT_COUNT));
 

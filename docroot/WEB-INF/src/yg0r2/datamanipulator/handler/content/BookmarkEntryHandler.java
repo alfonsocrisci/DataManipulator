@@ -49,9 +49,8 @@ public class BookmarkEntryHandler extends BaseHandler {
 		displayFields.addUpdateCount(
 			getDisplayFieldName(FieldKeys.INPUT_UPDATE_COUNT));
 
-		displayFields.add(
-			getDisplayFieldName(URL), FieldKeys.INPUT,
-			"http://www.liferay.com");
+		displayFields.addInput(
+			getDisplayFieldName(URL), "http://www.liferay.com", true);
 
 		return displayFields;
 	}
