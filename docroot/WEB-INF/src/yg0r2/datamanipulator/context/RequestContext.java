@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -40,6 +41,8 @@ import yg0r2.datamanipulator.util.RandomUtil;
  * @author Yg0R2
  */
 public class RequestContext {
+
+	public static final String RANDOM_STRING = "rnd-string";
 
 	public RequestContext(UploadPortletRequest uploadRequest) {
 		_uploadRequest = uploadRequest;
@@ -202,6 +205,16 @@ public class RequestContext {
 
 	public PermissionChecker getPermissionChecker() {
 		return _themeDisplay.getPermissionChecker();
+	}
+
+	public Object getRandomString() {
+		String rndString = getString(RANDOM_STRING);
+
+		if (Validator.isNull(rndString)) {
+			rndString = RandomUtil.nextString();
+		}
+
+		return rndString;
 	}
 
 	public PortletRequest getRequest() {

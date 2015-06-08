@@ -104,7 +104,7 @@ public class UserHandler extends BaseHandler {
 		StringBuilder postSB = new StringBuilder(3);
 		postSB.append(requestContext.getString("entryCount"));
 		postSB.append(StringPool.DASH);
-		postSB.append(requestContext.getString("rndString"));
+		postSB.append(requestContext.getRandomString());
 
 		String postString = postSB.toString();
 

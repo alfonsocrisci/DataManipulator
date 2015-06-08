@@ -219,7 +219,8 @@ public abstract class BaseHandler {
 
 		Object entry = null;
 		while (true) {
-			requestContext.set("rndString", RandomUtil.nextString());
+			requestContext.set(
+				RequestContext.RANDOM_STRING, RandomUtil.nextString());
 
 			try {
 				entry = addEntry(requestContext);
@@ -259,7 +260,9 @@ public abstract class BaseHandler {
 			updateRequestContext.set("editCount", String.valueOf(i + 1));
 
 			while (true) {
-				updateRequestContext.set("rndString", RandomUtil.nextString());
+				updateRequestContext.set(
+					RequestContext.RANDOM_STRING, RandomUtil.nextString());
+
 				try {
 					entry = updateEntry(entry, updateRequestContext);
 
@@ -290,7 +293,8 @@ public abstract class BaseHandler {
 
 			for (int i = 0; i < subCount; i++) {
 				subRequestContext.set("entryCount", String.valueOf(i + 1));
-				subRequestContext.set("rndString", RandomUtil.nextString());
+				subRequestContext.set(
+					RequestContext.RANDOM_STRING, RandomUtil.nextString());
 
 				_addEntry(
 					updateCount, (depth - 1), subCount, subRequestContext);
@@ -354,7 +358,7 @@ public abstract class BaseHandler {
 			sb.append(" times ");
 		}
 
-		sb.append(requestContext.getString("rndString"));
+		sb.append(requestContext.getRandomString());
 
 		String entryTemplate = sb.toString();
 

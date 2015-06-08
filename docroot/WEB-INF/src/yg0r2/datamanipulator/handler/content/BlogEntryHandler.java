@@ -97,7 +97,7 @@ public class BlogEntryHandler extends BaseHandler {
 		urlTitleSB.append("blog-entry");
 		urlTitleSB.append(requestContext.get("entryCount"));
 		urlTitleSB.append("-title-");
-		urlTitleSB.append(requestContext.get("rndString"));
+		urlTitleSB.append(requestContext.getRandomString());
 
 		Map<String, Object> args = new HashMap<String, Object>(1);
 

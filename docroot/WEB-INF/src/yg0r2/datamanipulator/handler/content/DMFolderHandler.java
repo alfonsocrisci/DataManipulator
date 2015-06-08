@@ -120,7 +120,8 @@ public class DMFolderHandler extends BaseHandler {
 		long parentFolderId = requestContext.getLong(
 			getDisplayFieldName(FieldKeys.SELECT_PARENT_LIST));
 
-		long repositoryId = requestContext.getLong(REPOSITORY_LIST);
+		long repositoryId = requestContext.getLong(
+			REPOSITORY_LIST, requestContext.getGroupId());
 
 		Map<String, Object> args = new HashMap<String, Object>(2);
 

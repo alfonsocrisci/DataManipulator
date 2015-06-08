@@ -46,7 +46,7 @@ public class DMDocumentHandler extends BaseHandler {
 
 		displayFields.addLabel(getDisplayFieldName());
 
-		displayFields.addFile(UPLOAD_FILE, true);
+		displayFields.addFile(getDisplayFieldName(UPLOAD_FILE), true);
 
 		displayFields.addCount(getDisplayFieldName(FieldKeys.INPUT_COUNT));
 
@@ -82,9 +82,10 @@ public class DMDocumentHandler extends BaseHandler {
 		RequestContext requestContext) throws Exception {
 
 		long repositoryId = requestContext.getLong(
-			DMFolderHandler.REPOSITORY_LIST);
+			DMFolderHandler.REPOSITORY_LIST, requestContext.getGroupId());
 
-		File uploadedFile = requestContext.getFile(UPLOAD_FILE);
+		File uploadedFile = requestContext.getFile(
+			getDisplayFieldName(UPLOAD_FILE));
 
 		Map<String, Object> args = new HashMap<String, Object>(2);
 
