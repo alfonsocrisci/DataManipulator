@@ -114,7 +114,6 @@ public abstract class BaseHandler {
 		if (count != 0) {
 			for (int i = 0; i < count; i++) {
 				RequestContext addRequestContext = requestContext.clone();
-				addRequestContext.set("entryName", _entryName);
 				addRequestContext.set("entryCount", String.valueOf(i + 1));
 				addRequestContext.set("rndString", RandomUtil.nextString());
 
@@ -341,7 +340,7 @@ public abstract class BaseHandler {
 		}
 
 		StringBuilder sb = new StringBuilder();
-		sb.append(requestContext.getString("entryName"));
+		sb.append(_entryName);
 		sb.append(requestContext.getString("entryCount"));
 		sb.append(" ${fieldName} ");
 
