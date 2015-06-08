@@ -48,6 +48,8 @@ public class RequestContext {
 			WebKeys.THEME_DISPLAY);
 
 		_parameters = new HashMap<String, Object>();
+
+		_session = _uploadRequest.getSession(true);;
 	}
 
 	public boolean contains(String key) {
@@ -200,7 +202,7 @@ public class RequestContext {
 	}
 
 	public HttpSession getSession() {
-		return _uploadRequest.getSession(true);
+		return _session;
 	}
 
 	public String getString(String key) {
@@ -266,6 +268,7 @@ public class RequestContext {
 			_uploadRequest);
 
 		clonedRequestProcessor._parameters.putAll(this._parameters);
+		clonedRequestProcessor._session = this._session;
 		clonedRequestProcessor._themeDisplay = this._themeDisplay;
 		clonedRequestProcessor._uploadRequest = this._uploadRequest;
 
@@ -273,6 +276,7 @@ public class RequestContext {
 	}
 
 	private Map<String, Object> _parameters;
+	private HttpSession _session;
 	private ThemeDisplay _themeDisplay;
 	private UploadPortletRequest _uploadRequest;
 
