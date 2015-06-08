@@ -134,6 +134,10 @@ public class RequestContext {
 	}
 
 	public File getFile(String key) {
+		if (_parameters.containsKey(key)) {
+			return (File) _parameters.get(key);
+		}
+
 		return _uploadRequest.getFile(key);
 	}
 
@@ -150,6 +154,10 @@ public class RequestContext {
 	}
 
 	public int getInteger(String key, int defaultValue) {
+		if (_parameters.containsKey(key)) {
+			return (Integer) _parameters.get(key);
+		}
+
 		return ParamUtil.getInteger(_uploadRequest, key, defaultValue);
 	}
 
@@ -158,11 +166,15 @@ public class RequestContext {
 	}
 
 	public long getLong(String key) {
+		return getLong(key, 0L);
+	}
+
+	public long getLong(String key, long defaultValue) {
 		if (_parameters.containsKey(key)) {
 			return Long.valueOf(String.valueOf(_parameters.get(key)));
 		}
 
-		return ParamUtil.getLong(_uploadRequest, key, 0);
+		return ParamUtil.getLong(_uploadRequest, key, defaultValue);
 	}
 
 	public long[] getLongValues(String key) {
