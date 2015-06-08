@@ -30,6 +30,16 @@ import yg0r2.datamanipulator.handler.BaseHandler;
  */
 public class HandlerThread extends Thread {
 
+	public HandlerThread(
+		ThreadGroup threadGroup, BaseHandler handler,
+		RequestContext requestContext) {
+
+		super(threadGroup, new HandlerThread(handler, requestContext));
+
+		_handler = handler;
+		_requestContext = requestContext;
+	}
+
 	public HandlerThread(BaseHandler handler, RequestContext requestContext) {
 		_handler = handler;
 		_requestContext = requestContext;
