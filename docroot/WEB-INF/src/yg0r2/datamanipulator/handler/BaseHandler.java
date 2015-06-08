@@ -92,6 +92,10 @@ public abstract class BaseHandler {
 	public abstract DisplayFields getDisplayFields(long groupId)
 		throws Exception;
 
+	public String getEntryName() {
+		return _entryName;
+	}
+
 	public void proceed(RequestContext requestContext) throws Exception {
 		_requestContext = requestContext;
 
@@ -167,10 +171,6 @@ public abstract class BaseHandler {
 	}
 
 	protected abstract String getClassPKName();
-
-	protected String getEntryName() {
-		return _entryName;
-	}
 
 	protected abstract String getParentClassPKName();
 
