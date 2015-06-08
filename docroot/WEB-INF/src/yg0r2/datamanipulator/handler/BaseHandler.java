@@ -130,6 +130,10 @@ public abstract class BaseHandler {
 	public Object updateEntry(Object entry, RequestContext requestContext)
 		throws Exception {
 
+		if (_updateClass == null) {
+			return entry;
+		}
+
 		Map<String, Object> argsMap = getUpdateEntrySpecifiedArgs(
 			entry, requestContext);
 
