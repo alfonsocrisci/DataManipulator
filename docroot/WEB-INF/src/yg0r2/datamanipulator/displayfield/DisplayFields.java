@@ -227,7 +227,6 @@ public class DisplayFields {
 		_put(name, FieldKeys.SEPARATOR, StringPool.BLANK);
 	}
 
-	@SuppressWarnings("deprecation")
 	public void addSiteMultiSelect(String name) throws SystemException {
 		List<Group> groups =
 			GroupLocalServiceUtil.getGroups(
