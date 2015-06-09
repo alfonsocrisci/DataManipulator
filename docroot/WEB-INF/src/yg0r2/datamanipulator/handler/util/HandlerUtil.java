@@ -58,6 +58,12 @@ public class HandlerUtil {
 			"The requested '" + handlerName + "' handler class not exist.");
 	}
 
+	public static String getHandlerDisplayName(Class<?> handlerClazz) {
+		Handler handlerAnnotation = handlerClazz.getAnnotation(Handler.class);
+
+		return handlerAnnotation.displayName();
+	}
+
 	public static String getHandlerDisplayName(String handlerName) {
 		try {
 			Class<?> handlerClazz = getHandlerClass(handlerName);
