@@ -14,11 +14,11 @@
 
 package yg0r2.datamanipulator.util;
 
+import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
+
 import java.lang.reflect.Field;
 
 import org.apache.commons.lang.ArrayUtils;
-
-import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 
 /**
  * @author Yg0R2

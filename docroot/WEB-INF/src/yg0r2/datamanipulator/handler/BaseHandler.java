@@ -47,6 +47,7 @@ import yg0r2.datamanipulator.handler.util.HandlerUtil;
 import yg0r2.datamanipulator.util.GetterUtil;
 import yg0r2.datamanipulator.util.RandomUtil;
 import yg0r2.datamanipulator.util.StringUtil;
+
 /**
  * @author Yg0R2
  */
