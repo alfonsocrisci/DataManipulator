@@ -11,6 +11,18 @@ I'm working on master/trunk and 7.0 support.
 
 ---
 
+# How to deploy/build this plugin:
+
+* Set the following Application Server properties in build.${USER.NAME}.properties file
+```properties
+app.server.auto.deploy.dir=
+app.server.lib.global.dir=
+app.server.lib.portal.dir=
+```
+* In the project's dir: `ant all`
+
+---
+
 # ArrayIndexOutOfBoundsException:
 
 If you would like to use this portlet on 6.1.x or above, please apply the following diff to your portal source.<br />
