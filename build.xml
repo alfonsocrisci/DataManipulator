@@ -42,6 +42,7 @@
 
 		<delete dir="docroot/WEB-INF/classes" />
 		<delete dir="docroot/WEB-INF/lib" />
+		<delete dir="docroot/WEB-INF/tld" />
 
 		<delete failonerror="false" includeemptydirs="true">
 			<fileset dir="docroot" includes="**/.sass-cache/**" />

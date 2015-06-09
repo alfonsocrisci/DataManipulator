@@ -1,8 +1,9 @@
 bin/
 cache/
 docroot/css/.sass-cache/
-docroot/WEB-INF/lib/
 docroot/WEB-INF/classes/
+docroot/WEB-INF/lib/
+docroot/WEB-INF/tld/
 logs/
 tmp/
 build.*.properties
