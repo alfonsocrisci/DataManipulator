@@ -3,6 +3,14 @@ You can create data into Liferay portal.
 
 ---
 
+# Support:
+
+I'm not going to support Liferay 6.0<br />
+Currently you can deploy this portlet under Liferay 6.1 and 6.2.<br />
+I'm working on master/trunk and 7.0 support.
+
+---
+
 # ArrayIndexOutOfBoundsException:
 
 If you would like to use this portlet on 6.1.x or above, please apply the following diff to your portal source.<br />
