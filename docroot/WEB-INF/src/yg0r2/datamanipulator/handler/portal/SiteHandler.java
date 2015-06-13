@@ -133,9 +133,14 @@ public class SiteHandler extends BaseHandler {
 	public DisplayFields getDisplayFields(long groupId) throws Exception {
 		DisplayFields displayFields = new DisplayFields();
 
-		displayFields.addLabel(getDisplayFieldName());
-
 		displayFields.addUserMultiSelect(FieldKeys.MULTI_SELECT_USER_LIST);
+
+		displayFields.addInfo(
+			getDisplayFieldName(FieldKeys.MULTI_SELECT_USER_LIST));
+
+		displayFields.addSeparator("");
+
+		displayFields.addLabel(getDisplayFieldName());
 
 		displayFields.addSelectList(
 			getDisplayFieldName(SITE_TYPE_SELECT_LIST), _getSiteTypes());

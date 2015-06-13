@@ -76,7 +76,6 @@ public class LayoutHandler extends BaseHandler {
 
 		displayFields.addSelectList(LAYOUT_TYPE_SELECT_LIST, _getLayoutTypes());
 
-		//hidden
 		displayFields.addCheckbox(getDisplayFieldName(FieldKeys.CHECK_BOX));
 
 		displayFields.addCount(

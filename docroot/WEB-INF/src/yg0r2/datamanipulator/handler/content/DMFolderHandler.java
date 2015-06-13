@@ -61,11 +61,12 @@ public class DMFolderHandler extends BaseHandler {
 		displayFields.addSeparator("");
 
 		displayFields.addSelectList(
-			REPOSITORY_LIST, _getRepositoryNameIdPairs(groupId));
+			getDisplayFieldName(REPOSITORY_LIST),
+			_getRepositoryNameIdPairs(groupId));
 
 		displayFields.addSelectList(
-			getDisplayFieldName(
-				FieldKeys.SELECT_PARENT_LIST), _getFolderNameIdPairs(groupId));
+			getDisplayFieldName(FieldKeys.SELECT_PARENT_LIST),
+			_getFolderNameIdPairs(groupId));
 
 		displayFields.addInfo(
 			getDisplayFieldName(PARENT_FOLDER_LIST + "-" + REPOSITORY_LIST));
@@ -121,7 +122,7 @@ public class DMFolderHandler extends BaseHandler {
 			getDisplayFieldName(FieldKeys.SELECT_PARENT_LIST));
 
 		long repositoryId = requestContext.getLong(
-			REPOSITORY_LIST, requestContext.getGroupId());
+			getDisplayFieldName(REPOSITORY_LIST), requestContext.getGroupId());
 
 		Map<String, Object> args = new HashMap<String, Object>(2);
 

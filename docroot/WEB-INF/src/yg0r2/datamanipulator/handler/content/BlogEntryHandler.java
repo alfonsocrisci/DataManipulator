@@ -46,6 +46,7 @@ public class BlogEntryHandler extends BaseHandler {
 		DisplayFields displayFields = new DisplayFields();
 
 		displayFields.addUserMultiSelect(FieldKeys.MULTI_SELECT_USER_LIST);
+
 		displayFields.addInfo(
 			getDisplayFieldName(FieldKeys.MULTI_SELECT_USER_LIST));
 

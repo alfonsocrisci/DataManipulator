@@ -27,6 +27,7 @@ import yg0r2.datamanipulator.annotation.Handler;
 import yg0r2.datamanipulator.annotation.HandlerType;
 import yg0r2.datamanipulator.context.RequestContext;
 import yg0r2.datamanipulator.displayfield.DisplayFields;
+import yg0r2.datamanipulator.displayfield.FieldKeys;
 import yg0r2.datamanipulator.handler.BaseCustomHandler;
 import yg0r2.datamanipulator.handler.content.BlogEntryHandler;
 import yg0r2.datamanipulator.handler.content.BookmarkEntryHandler;
@@ -57,8 +58,7 @@ public class ExampleCustomHandler extends BaseCustomHandler {
 	public DisplayFields getDisplayFields(long groupId) throws Exception {
 		DisplayFields displayFields = new DisplayFields();
 
-		displayFields.addLabel(getDisplayFieldName());
-		displayFields.addInfo(getDisplayFieldName());
+		displayFields.addInfo(getDisplayFieldName(FieldKeys.INFO));
 
 		return displayFields;
 	}

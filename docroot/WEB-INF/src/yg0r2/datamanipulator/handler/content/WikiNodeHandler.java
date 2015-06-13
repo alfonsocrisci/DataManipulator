@@ -49,6 +49,8 @@ public class WikiNodeHandler extends BaseHandler {
 
 		displayFields.addSeparator("");
 
+		displayFields.addLabel(getDisplayFieldName());
+
 		displayFields.addCount(getDisplayFieldName(FieldKeys.INPUT_COUNT));
 
 		displayFields.addUpdateCount(

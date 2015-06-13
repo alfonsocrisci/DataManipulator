@@ -46,8 +46,6 @@ public class UserHandler extends BaseHandler {
 	public DisplayFields getDisplayFields(long groupId) throws Exception {
 		DisplayFields displayFields = new DisplayFields();
 
-		displayFields.addLabel(getDisplayFieldName());
-
 		displayFields.addOrganizationMultiSelect(
 			FieldKeys.MULTI_SELECT_ORGANIZATION_LIST);
 
@@ -57,6 +55,10 @@ public class UserHandler extends BaseHandler {
 
 		displayFields.addUserGroupMultiSelect(
 			FieldKeys.MULTI_SELECT_USERGROUP_LIST);
+
+		displayFields.addSeparator("");
+
+		displayFields.addLabel(getDisplayFieldName());
 
 		displayFields.addCount(
 			getDisplayFieldName(FieldKeys.INPUT_COUNT), true);
